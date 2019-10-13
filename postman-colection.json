@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "f6949535-5039-4484-9eec-8af7afa60bb2",
+		"name": "Car Rental System",
+		"description": "A car rental system with various functionalities\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add New Car",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "jwt {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vehicle_number\": \"TN_31_BW_4502\",\n    \"vehicle_model\": \"Sedan\",\n    \"vehicle_seating_capacity\": \"5\",\n    \"vehicle_rent_per_day\": \"1000\",\n    \"vehicle_city\": \"Bangalore\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://carwp.herokuapp.com/routes/addcar/",
+					"protocol": "https",
+					"host": [
+						"carwp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"routes",
+						"addcar",
+						""
+					]
+				},
+				"description": "Enables the user to add a car into the database.\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Available Cars",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "jwt {{jwt}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vehicle_city\": \"Bangalore\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://carwp.herokuapp.com/routes/showavailability/Bangalore",
+					"protocol": "https",
+					"host": [
+						"carwp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"routes",
+						"showavailability",
+						"Bangalore"
+					]
+				},
+				"description": "Shows the list of available cars in a particular city where city name is taken as a url parameter.eg.(/routes/showavailability/<type-your-city>).\nClick on the link displayed to book the cab.\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Generate JWT Token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "jwt {{jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://carwp.herokuapp.com/",
+					"protocol": "http",
+					"host": [
+						"carwp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Generates an access token for JWT authentication."
+			},
+			"response": []
+		},
+		{
+			"name": "Book Car",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "jwt {{jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://carwp.herokuapp.com/routes/bookcar/TN_38_BW_6985",
+					"protocol": "http",
+					"host": [
+						"carwp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"routes",
+						"bookcar",
+						"TN_38_BW_6985"
+					]
+				},
+				"description": "Book car based on availability and makes the availability of car to false and the details of that particular car is removed from show availability page."
+			},
+			"response": []
+		},
+		{
+			"name": "Return Car",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "jwt {{jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://carwp.herokuapp.com/routes/returncar/TN_31_BW_4502",
+					"protocol": "http",
+					"host": [
+						"carwp",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"routes",
+						"returncar",
+						"TN_31_BW_4502"
+					]
+				},
+				"description": "Makes the availability of vehicle to True and the details of that car is shown in show availability page."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
