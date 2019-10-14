@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require("mongoose");
 let jwt = require('jsonwebtoken');
-mongoose.connect("mongodb://localhost:27017/car_management");
 var path = require("path");
 var bodyParser = require("body-parser");
 router.use(bodyParser.json())
