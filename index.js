@@ -6,7 +6,11 @@ let config = require('./config');
 let middleware = require('./middleware');
 var path=require('path');
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/car_management");
+mongoose.connect("mongodb+srv://app1:app1@whitepanda-0gfun.mongodb.net/test?retryWrites=true&w=majority").then((conn) => {
+console.log("DB Connected");
+}).catch((err) => {
+  console.log(err.toString());
+});
 var {router} = require(path.join(__dirname,'/routes/addcar.js'));
 app.use("/routes/addcar",router);
 var showavailability= require(path.join(__dirname,'/routes/showavailability.js'));
